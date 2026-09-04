@@ -10,10 +10,35 @@ const app = new App({
 });
 
 app.command("/svts-app-ask", async ({ command, ack, respond }) => {
-  const start = Date.now();
   await ack();
-  const latency = Date.now() - start;
-  await respond({ text: `Pong!\nLatency: ${latency}ms` });
+
+  const question = command.text.toLowerCase();
+
+  if (!question) {
+    await respond({
+      text: "Ask me about coding! Try: `/svts-app-ask what is a loop?`"
+    });
+  } else if (question.includes("loop")) {
+    await respond({
+      text: "A loop repeats a block of code. In Python, common loops are `for` and `while` loops."
+    });
+  } else if (question.includes("syntaxerror") || question.includes("syntax error")) {
+    await respond({
+      text: "A SyntaxError means your code doesn't follow the language's syntax. Check things like missing colons, brackets, quotes, or incorrect indentation."
+    });
+  } else if (question.includes("function")) {
+    await respond({
+      text: "A function is a reusable block of code designed to perform a specific task."
+    });
+  } else if (question.includes("variable")) {
+    await respond({
+      text: "A variable stores a value that your program can use later, such as `score = 10`."
+    });
+  } else {
+    await respond({
+      text: "I don't know that one yet! Try asking about loops, variables, functions, or syntax errors."
+    });
+  }
 });
 
 app.command("/svts-app-help", async ({ ack, respond }) => {
