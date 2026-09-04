@@ -47,7 +47,9 @@ app.command("/svts-app-help", async ({ ack, respond }) => {
   await respond({
     text: `Available Commands:
 /svts-app-ask - Ask the coding helper
-/svts-app-help - Show available commands`
+/svts-app-help - Show available commands
+/svts-app-catfact - Get a random cat fact
+/svts-app-joke - Get a random joke`
   });
 });
 
